@@ -6,6 +6,8 @@ const Hubs = require ('./data/db.js');
 
 const server = express();
 
+server.use(express.json()); //this teaches express how to parse JSON
+
 server.get('/', (req, res)=>{
     res.send ('hello world')
 })
@@ -17,6 +19,19 @@ server.get('/hubs', (req, res)=>{
         res.status(500).json({message: 'error '})
     })
 })
+
+//creating hub
+server.post('/hubs',(req, res) =>{
+    const hubInformation = req.body;
+    console.log('hub info from body', hubInformation)
+    Hubs.insert(hubInformation)
+    .then(hub =>{
+        res.status(201).json(hub)
+    })
+    .catch(err =>{
+        res.status(500).json({message: 'error in adding hub'})
+    });
+});
 
 const port = 8000;
 server.listen(port, ()=> console.log('api running'));
