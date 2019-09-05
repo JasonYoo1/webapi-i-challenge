@@ -33,6 +33,7 @@ server.post('/hubs',(req, res) =>{
     });
 });
 
-const port = 8000;
-server.listen(port, ()=> console.log('api running'));
-
+const port = process.env.PORT
+server.listen(port, () => {
+    console.log(`\n*** Server Running on http://localhost:${port} ***\n`);
+  });
