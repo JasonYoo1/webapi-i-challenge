@@ -9,7 +9,7 @@ const server = express();
 server.use(express.json()); //this teaches express how to parse JSON
 
 server.get('/', (req, res)=>{
-    res.send ('hello world')
+    res.send ('hello from Jason !')
 })
 
 server.get('/hubs', (req, res)=>{
